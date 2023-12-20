@@ -123,6 +123,31 @@
             padding: 5px;
             display: none;
         }
+
+        .custom-underline-animation {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        .custom-underline-animation::after {
+            content: '';
+            position: absolute;
+            background-color: #60a5fa;
+            height: 2px;
+            opacity: 0;
+            transition: all 300ms ease-out;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+
+        }
+
+        .custom-underline-animation:hover::after {
+            opacity: 1;
+            left: 0;
+            right: 0;
+        }
     </style>
 </head>
 
@@ -132,7 +157,7 @@
         <header x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50">
             <nav class="flex items-center justify-between p-8 lg:p-6 lg:px-8 max-w-7xl mx-auto" aria-label="Global">
                 <div class="flex lg:flex-1">
-                    <a href="#" class="-m-1.5 p-1.5">
+                    <a href="index.html" class="-m-1.5 p-1.5">
                         <span class="sr-only">Digitalage</span>
                         <img class="h-24 w-24 lg:h-12 lg:w-auto" src="logo/DAlogoLOCKUP_R_clear_light.png" alt="">
                     </a>
@@ -148,7 +173,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="hidden lg:flex lg:gap-x-14">
+                <div class="hidden lg:flex lg:flex-1 lg:gap-x-12">
                     <div>
                         <a href="#"
                             class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Product</a>
@@ -162,14 +187,22 @@
                             class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Marketplace</a>
                     </div>
                     <div>
-                        <a href="#"
+                        <a href="about.html"
                             class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Company</a>
                     </div>
                 </div>
 
-                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" class="text-sm font-semibold leading-6 text-white">Log in <span
-                            aria-hidden="true">&rarr;</span></a>
+                <div class="flex hidden lg:flex flex-row space-x-2 lg:flex-1">
+                    <div class="hidden lg:flex lg:flex-1 ml-[11rem] lg:justify-end">
+                        <button onclick="scrollToDiv()"
+                            class="text-sm font-semibold leading-6 text-white custom-underline-animation">Contact Us 👋
+                           </button>
+                    </div>
+                    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                        <a href="#" class="text-sm font-semibold leading-6 text-white custom-underline-animation">Log in
+                            <span aria-hidden="true">&rarr;</span></a>
+                    </div>
+
                 </div>
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
@@ -202,8 +235,14 @@
                                         class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white ">Features</a>
                                     <a href="#"
                                         class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white">Marketplace</a>
-                                    <a href="#"
+                                    <a href="about.html"
                                         class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white">Company</a>
+                                </div>
+
+                                <div class="py-6" onclick="scrollToDiv()"> 
+                                    <button href="#contactUs"
+                                        class="-mx-3 block rounded-lg px-3 py-2.5 font-semibold text-[3rem] leading-7 text-white hover:bg-gray-800">Contact
+                                        Us</button>
                                 </div>
                                 <div class="py-6">
                                     <a href="#"
@@ -379,7 +418,7 @@
 
 
     <div
-        class="bg-gradient-to-b pt-10 lg:pt-0   from-[#343db9] via-[#0e157c] lg:flex lg:items-center flex-col justify-center  to-[#010652]">
+        class="bg-gradient-to-b pt-10 lg:pt-0 from-[#343db9] via-[#0e157c] lg:flex lg:items-center flex-col justify-center  to-[#010652]">
         <div class="max-w-7xl mx-auto">
             <div id="section5" class="grid grid-cols-1 lg:grid-cols-2 pt-10">
                 <div id="userCentricDesign " class="hidden lg:flex">
@@ -776,7 +815,7 @@
             </div>
         </div>
 
-        <div class="bg-gradient-to-b from-[#343db9] via-[#0e157c] lg:flex lg:items-center to-[#010652]">
+        <div id="contactUs" class="bg-gradient-to-b from-[#343db9] via-[#0e157c] lg:flex lg:items-center to-[#010652]">
             <div class="pt-[4rem] pb-[8rem] lg:pb-[3rem] lg:mt-0 mx-auto  lg:max-w-[78rem]">
                 <div class="flex flex-col space-y-[4rem]">
                     <div class="grid grid-cols-1 gap-[3rem] lg:grid-cols-3 lg:gap-[0rem]">
@@ -888,7 +927,7 @@
 
                     </div>
                     <div
-                        class="flex justify-center pt-4 lg:pt-0 text-center px-2 text-[1.6rem] px-10 lg:px-0 lg:text-lg text-indigo-100 ">
+                        class="flex justify-center pt-4 lg:pt-0 text-center px-10 text-[1.6rem] lg:px-0 lg:text-lg text-indigo-100 ">
                         We make every effort to respond to all inquiries within 48 hours! Please reach out by email for
                         the quickest response.
                         You can also explore our Help Center for self-service troubleshooting, our Press Kit for brand
@@ -928,9 +967,7 @@
                     </div>
                 </div>
             </div>
-            <pre>
-</pre>
-
+            
             <script>
                 document.addEventListener("DOMContentLoaded", () => {
                     const observer = new IntersectionObserver((entries) => {
@@ -999,7 +1036,9 @@
                 //     elements.forEach(element => observer3.observe(element));
                 // });
 
-
+                function scrollToDiv() {
+                    document.getElementById('contactUs').scrollIntoView({ behavior: 'smooth' });
+                }
 
             </script>
 
