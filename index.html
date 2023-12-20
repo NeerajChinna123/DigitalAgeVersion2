@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Digitalage</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    <!--    <script src="https://cdn.tailwindcss.com"></script>-->
+    <script src="scripts/tailwind3.3.5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
+        integrity="sha256-yPqP9Fer3NIS83oH7y8pLJmQEd/6vKpXf7Hh4Adsplg=" crossorigin="anonymous" defer></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.9/dist/htmx.min.js"
+        integrity="sha256-lqM0qVcKOCz5xhofhtVYcLocZeFmzFvK6Y3djNq+uIY=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <style>
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fadeUpDiv {
+            /* Start with div hidden */
+            position: relative;
+            animation: fadeUp 1s ease-out forwards;
+            /* Maintain the state after the animation */
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up-animation {
+            opacity: 0;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        #slideRightDiv {
+            position: relative;
+            animation: slideRight 0.5s ease-out forwards;
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .nav-slide-in {
+            animation: 0.5s ease-out 0s 1 slideInFromRight;
+        }
+
+        @keyframes slideOutToRight {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .nav-slide-out {
+            animation: 0.5s ease-out 0s 1 slideOutToRight;
+        }
+
+
+        .faq-item {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .question {
+            background-color: lightgray;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .answer {
+            background-color: white;
+            padding: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gray-900">
+        <header x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50">
+            <nav class="flex items-center justify-between p-8 lg:p-6 lg:px-8 max-w-7xl mx-auto" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="#" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Digitalage</span>
+                        <img class="h-24 w-24 lg:h-12 lg:w-auto" src="logo/DAlogoLOCKUP_R_clear_light.png" alt="">
+                    </a>
+                </div>
+                <div class="flex lg:hidden">
+                    <button @click="isOpen = !isOpen" type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-16 w-16  lg:h-6 lg:w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-14">
+                    <div>
+                        <a href="#"
+                            class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Product</a>
+                    </div>
+                    <div>
+                        <a href="#"
+                            class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Features</a>
+                    </div>
+                    <div>
+                        <a href="#"
+                            class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Marketplace</a>
+                    </div>
+                    <div>
+                        <a href="#"
+                            class="text-sm font-semibold leading-6 text-white hover:border hover:border-gray-200 rounded-md bg-white bg-opacity-0 text-white p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Company</a>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="#" class="text-sm font-semibold leading-6 text-white">Log in <span
+                            aria-hidden="true">&rarr;</span></a>
+                </div>
+            </nav>
+            <!-- Mobile menu, show/hide based on menu open state. -->
+            <div id="navBar2" style="display: none;">
+                <div :class="isOpen ? 'show' : 'hidden'" role="dialog" aria-modal="true">
+
+                    <div class="fixed inset-0 z-50"></div>
+                    <div :class="!isOpen && ' nav-slide-out '"
+                        class="fixed inset-y-0 right-0 z-50 w-[70%] overflow-y-auto bg-indigo-900 px-[4rem] py-[4rem]  sm:ring-1 sm:ring-white/10 nav-slide-in">
+                        <div class="flex items-center justify-between">
+                            <a href="#" class="-m-1.5 p-1.5 ">
+                                <span class="sr-only">Your Company</span>
+                                <img class=" h-[5rem] w-[5rem]" src="icons/favicon.ico" alt="">
+                            </a>
+                            <button @click="isOpen = !isOpen" type="button"
+                                class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                                <span class="sr-only">Close menu</span>
+                                <svg class="h-[5rem] w-[5rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="mt-14 flow-root">
+                            <div class="  ">
+                                <div class="space-y-16 py-6">
+                                    <a href="#"
+                                        class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white ">Product</a>
+                                    <a href="#"
+                                        class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white ">Features</a>
+                                    <a href="#"
+                                        class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white">Marketplace</a>
+                                    <a href="#"
+                                        class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white">Company</a>
+                                </div>
+                                <div class="py-6">
+                                    <a href="#"
+                                        class="-mx-3 block rounded-lg px-3 py-2.5 font-semibold text-[3rem] leading-7 text-white hover:bg-gray-800">Log
+                                        in</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+        <div
+            class="relative isolate overflow-hidden pt-14 scroll-smooth bg-[url('images/A_group_of_culturally_diverse_creators_collaborating_98ca68ac-724d-47e3-a0b4-d7ec640ab56a.png')] bg-cover">
+            <!-- <img src="images/A_group_of_culturally_diverse_creators_collaborating_98ca68ac-724d-47e3-a0b4-d7ec640ab56a.png" alt="" class="brightness-50 absolute inset-0 -z-10 h-full w-full object-contain md:object-cover"> -->
+            <!-- <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+            <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>  -->
+            <div class="absolute inset-0 bg-black opacity-70"></div>
+            <div class="mx-auto max-w-3xl lg:max-w-2xl py-3 sm:py-48 lg:py-40">
+                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                    <div id="slideRightDiv"
+                        class="relative rounded-full px-6 py-2 lg:px-3 lg:py-1 leading-[4rem] text-[3rem] lg:text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
+                        Announcing our next round of funding. <a href="#" class="font-semibold text-white"><span
+                                class="absolute inset-0" aria-hidden="true"></span>Read more <span
+                                aria-hidden="true">&rarr;</span></a>
+                    </div>
+                </div>
+                <div id="fadeUpDiv" class="text-center ">
+                    <h1
+                        class="font-bold tracking-tight mt-[6rem] lg:mt-0 font-sans text-white text-[10rem] leading-[10rem] lg:text-7xl">
+                        The future of social media starts now</h1>
+                    <p class="mt-[4rem] lg:mt-6 text-[2.5rem] lg:text-lg leading-[4rem] lg:leading-8 text-gray-300">
+                        Digitalage is pioneering a revolutionary social media platform centered around elevating
+                        creators, protecting individual rights, and cultivating authentic communities.
+                        We are reimagining social technology to put control back into the hands of users - giving you
+                        unmatched authority over your personal data and digital footprint. Our platform is designed to
+                        provide transparency, ensure content integrity, foster meaningful connections, and enable
+                        equitable compensation</p>
+                    <div class="mt-[6rem] lg:mt-10 flex flex-col lg:flex-row items-center justify-center gap-x-6">
+                        <a href="#"
+                            class="rounded-md bg-indigo-500 lg:px-3.5 lg:py-2.5 px-[3rem] py-[2rem] text-[3rem] lg:text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition duration-500 ease-in-out focus-visible:outline-indigo-400 rounded-lg">Get
+                            started</a>
+                        <a href="#"
+                            class=" mt-[6rem] lg:mt-0 font-semibold leading-6 text-[3rem] lg:text-[1rem] text-white">Learn
+                            more <span aria-hidden="true">→</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                aria-hidden="true">
+                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-white via-indigo-100 to-indigo-30">
+        <div id="section4" class="max-w-7xl mx-auto">
+            <div
+                class="pt-12 font-extrabold font-plusJ items-center text-center flex flex-row justify-center  lg:w-full text-transparent text-[5rem] lg:text-[4.2rem] leading-[6rem] lg:leading-[5.5rem] bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-900">
+                <p class="w-[85%] text-center">The Digitalage Difference</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 pt-10">
+                <div id="userCentricDesign ">
+
+
+                    <dotlottie-player class="lg:w-[35rem] lg:h-[35rem] w-[40rem] h-[40rem] mx-auto"
+                        src="https://lottie.host/27291c5a-6912-46c3-a32f-85392d783aef/Uv2cPSWsHa.json"
+                        background="transparent" speed="1" loop autoplay></dotlottie-player>
+                </div>
+                <div class="flex flex-col ml-20 mt-20 space-y-4">
+                    <p class="font-sans font-bold text-[4rem] lg:text-[2rem] tlg:text-start text-indigo-900">
+                        User Centric Design
+                    </p>
+                    <p class="font-sans text-[2.5rem] lg:text-lg font-semibold">
+                        Our interface and algorithms are built to serve user needs - not exploit them. We enable
+                        authentic connections without manipulating recommendations or compromising privacy.
+                    </p>
+                    <div class="flex flex-col lg:p-0">
+                        <div class="flex flex-row pr-8  items-center ml-[-4rem] justify-center">
+
+
+                            <div class="flex flex-row justify-center">
+                                <dotlottie-player class="lg:w-[12rem] lg:h-[12rem] w-[15rem] h-[15rem]  mt-[-2rem] "
+                                    src="https://lottie.host/309e8b05-2a73-4bb8-91f5-5933b9ee294e/fqlzQH9AmT.json"
+                                    background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            </div>
+                            <div class="ml-[-2rem]">
+                                <p class="font-sans text-black text-[2rem] lg:text-lg">Our interface and algorithms
+                                    are built to serve user needs - not exploit them. We enable authentic connections
+                                    without manipulating recommendations or compromising privacy.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex mt-[-4rem] flex-row  items-center ml-[-4rem] justify-center">
+
+                            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                                type="module"></script>
+                            <div>
+                                <dotlottie-player class="lg:w-[12rem] lg:h-[12rem] w-[15rem] h-[15rem] "
+                                    src="https://lottie.host/309e8b05-2a73-4bb8-91f5-5933b9ee294e/fqlzQH9AmT.json"
+                                    background="transparent" speed="1" loop autoplay></dotlottie-player>
+                            </div>
+                            <div class="ml-[-2rem]">
+                                <p class="font-sans text-black text-[2rem] lg:text-lg">We prioritize user privacy,
+                                    ensuring our interface and algorithms do not exploit or
+                                    compromise personal data.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 pt-1 pb-20 lg:pb-0">
+                <div class="flex lg:hidden" id="userCentricDesign ">
+
+
+                    <dotlottie-player class="lg:w-[42rem] lg:h-[42rem] w-[70rem] h-[50rem]"
+                        src="https://lottie.host/c7d964eb-c34a-4174-acc8-2ccd630506af/eZFwnOfVqt.json"
+                        background="transparent" speed="1" loop autoplay></dotlottie-player>
+                </div>
+                <div class="flex flex-col ml-20 mt-20 space-y-4 mt-[-4rem] lg:mt-0">
+                    <p class="font-sans font-bold text-[4rem] lg:text-[2rem] tlg:text-start text-indigo-900">
+                        Creator Economy
+                    </p>
+                    <p class="font-sans text-[2.5rem] lg:text-lg font-semibold">
+                        We offer creators unmatched opportunities to monetize content while retaining rights. Our fair
+                        compensation models empower sustainable creator careers.
+                    </p>
+                    <div class="flex flex-col lg:p-0">
+                        <div class="flex flex-row pr-8  items-center ml-[-4rem] justify-center">
+
+
+
+
+                            <div class="flex flex-row justify-center">
+                                <dotlottie-player
+                                    src="https://lottie.host/d5215d8e-f029-4df4-ac97-d37997d54a16/ojoIb5jRtQ.json"
+                                    background="transparent" speed="1" style="width: 300px; height: 300px;" loop
+                                    autoplay></dotlottie-player>
+                            </div>
+                            <div class="ml-[-2rem]">
+                                <p class="font-sans text-black text-[2rem] lg:text-lg ml-8">We offer creators not only
+                                    unmatched opportunities to monetize content while retaining rights, but also access
+                                    to innovative revenue streams. This combination ensures a steady and lucrative
+                                    income, empowering sustainable creator careers with fair compensation models.</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex" id="userCentricDesign ">
+
+
+                    <dotlottie-player class="lg:w-[42rem] lg:h-[42rem] w-[15rem] h-[15rem]"
+                        src="https://lottie.host/c7d964eb-c34a-4174-acc8-2ccd630506af/eZFwnOfVqt.json"
+                        background="transparent" speed="1" loop autoplay></dotlottie-player>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div
+        class="bg-gradient-to-b pt-10 lg:pt-0   from-[#343db9] via-[#0e157c] lg:flex lg:items-center flex-col justify-center  to-[#010652]">
+        <div class="max-w-7xl mx-auto">
+            <div id="section5" class="grid grid-cols-1 lg:grid-cols-2 pt-10">
+                <div id="userCentricDesign " class="hidden lg:flex">
+
+                    <dotlottie-player class="w-[30rem] h-[30rem]"
+                        src="https://lottie.host/6e9bf58a-56db-40ff-aa30-ff58ce658fd0/z97HvOHfO7.json"
+                        background="transparent" speed="1" loop autoplay>
+                    </dotlottie-player>
+
+                </div>
+                <div class="flex flex-col space-y-4 pt-12 lg:pt-28 w-[95%]">
+                    <p
+                        class="font-bold font-plusJ items-center ml-[-1rem] text-center text-transparent text-[4rem] lg:text-[3rem] leading-[3.6rem] lg:leading-[4.7rem] bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-500">
+                        Decentralized Architecture
+                    </p>
+                    <p
+                        class="text-indigo-300 font-sans text-[2.5rem] lg:text-lg text-center lg:text-start pt-[3rem] lg:pt-0 font-semibold leading-[4rem]">
+                        Our decentralized platform powered by blockchain ensures security, transparency and gives users
+                        control over their data.
+                        Content Authenticity: We leverage advanced analytics to authenticate content, counter
+                        disinformation, and promote accurate information across the platform.
+                    </p>
+
+                </div>
+
+                <div id="userCentricDesign" class="flex lg:hidden flex-row justify-center">
+
+                    <dotlottie-player class="w-[40rem] h-[40rem] ml-[-4rem]"
+                        src="https://lottie.host/6e9bf58a-56db-40ff-aa30-ff58ce658fd0/z97HvOHfO7.json"
+                        background="transparent" speed="1" loop autoplay>
+                    </dotlottie-player>
+
+                </div>
+            </div>
+
+
+            <div id="section8" class="grid grid-cols-1 lg:grid-cols-2 pt-2">
+                <div class="flex flex-col space-y-4 pt-6 w-[95%]">
+                    <p
+                        class="font-bold font-plusJ items-center lg:ml-[-10rem] text-center text-transparent text-[4rem] lg:text-[3rem] leading-[3.6rem] lg:leading-[4.7rem] bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-500">
+                        Content Authenticity
+                    </p>
+                    <p
+                        class="text-indigo-300  font-sans text-[2.5rem] leading-[4rem] lg:text-lg text-center lg:text-start pt-[3rem] lg:pt-0 px-2 lg:px-0">
+                        We use advanced analytics to enhance our content authentication process, effectively countering
+                        disinformation. Our focus is on promoting accurate information across the platform, ensuring a
+                        reliable and trustworthy user experience.
+                    </p>
+
+                </div>
+                <div
+                    id="userCentricDesign pt-[-4rem] pr-[-30rem] flex flex-row justify-center lg:justify-start mx-auto">
+
+
+                    <dotlottie-player src="https://lottie.host/addcdd4a-1118-42fd-97b1-e62409ef153b/koke8BhNqI.json"
+                        background="transparent" speed="1"
+                        class="lg:w-[28rem] lg:h-[28rem] w-[40rem] h-[40rem] max-w-2xl mx-auto" loop autoplay>
+                    </dotlottie-player>
+
+                </div>
+
+            </div>
+
+
+            <div>
+                <div class="mt-[0rem] lg:mt-[-2rem] flex flex-col lg:flex-row pb-[2rem] ">
+                    <div class="flex flex-col lg:flex-row lg:space-x-14 items-center">
+                        <div class="flex flex-col space-y-8 self-center lg:self-start">
+                            <div class="  flex flex-row justify-center lg:justify-start">
+                                <div class="">
+                                    <img src="icons/icons8-faq-100.png"
+                                        class="text-red-400 h-[18rem] w-[18rem] lg:h-[6rem] lg:w-[6rem]" />
+                                </div>
+                            </div>
+
+                            <div class="mt-2 lg:mt-0">
+                                <p
+                                    class="font-extrabold font-plusJ text-indigo-100 text-center lg:text-start text-[3.8rem] lg:text-[3rem]">
+                                    FAQs
+                                </p>
+                            </div>
+                            <div>
+                                <p
+                                    class="px-2 lg:px-0 md:w-[38rem] text-[2.3rem] lg:text-[1rem] text-center lg:text-start text-indigo-300 font-sans leading-[3.8rem] lg:leading-6">
+                                    Browse our FAQs to understand how Digitalage redefines social media with a focus on
+                                    privacy, creator compensation, and authentic connections. If you need more
+                                    information, we're here to help. Join Digitalage and be part of a community that
+                                    champions ethical digital engagement.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-col mt-14  lg:mt-2  px-5 md:px-12 md:items-center lg:ml-[2rem] lg:items-start">
+
+                        <div class="text-gray-100 p-6 ">
+                            <div x-data="{ openQuestion: null }" class="lg:max-w-2xl mx-auto">
+
+                                <div class="mb-2">
+                                    <div @click="openQuestion = !openQuestion"
+                                        class="flex flex-row  hover:cursor-pointer space-x-2 w-[55rem] lg:w-[35rem] p-3 bg-indigo-200 rounded-sm bg-opacity-10"
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        <div class="text-indigo-100 text-opacity-60 text-[2rem] lg:text-lg">
+                                            <p class="">
+                                                1.
+                                            </p>
+                                        </div>
+                                        <div class="text-indigo-100 text-opacity-60  text-[2rem] lg:text-lg">
+                                            <div
+                                                class="border border-l-[0.01rem] border-indigo-100 border-opacity-40  h-full ">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-[1.8rem] lg:text-lg">What is Digitalage?</span>
+                                        <button class="focus:outline-none">
+                                            <svg x-show="!openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            <svg x-show="openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div x-show="openQuestion"
+                                        class="p-4 bg-indigo-200 text-white bg-opacity-10 text-[1.8rem] lg:text-lg"
+                                        x-transition
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        Digitalage is an ethical social media platform focused on user control, content
+                                        integrity, fair compensation for creators, and building authentic communities.
+                                        We leverage advanced technologies like blockchain and AI responsibly.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div x-data="{ openQuestion: null }" class="lg:max-w-2xl mx-auto">
+
+                                <div class="mb-2">
+                                    <div @click="openQuestion = !openQuestion"
+                                        class="flex flex-row  hover:cursor-pointer space-x-2 w-[55rem] lg:w-[35rem] p-3 bg-indigo-200 rounded-sm bg-opacity-10"
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        <div class="text-indigo-100 text-opacity-60 text-[2rem] lg:text-lg">
+                                            <p class="">
+                                                2.
+                                            </p>
+                                        </div>
+                                        <div class="text-indigo-100 text-opacity-60  text-[2rem] lg:text-lg">
+                                            <div
+                                                class="border border-l-[0.01rem] border-indigo-100 border-opacity-40  h-full ">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-[1.8rem] lg:text-lg">How is Digitalage different from other
+                                            social media apps?</span>
+                                        <button class="focus:outline-none">
+                                            <svg x-show="!openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            <svg x-show="openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div x-show="openQuestion"
+                                        class="p-4 bg-indigo-200 text-white bg-opacity-10 text-[1.8rem] lg:text-lg"
+                                        x-transition
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        Unlike traditional platforms, Digitalage puts user needs first - not
+                                        advertisers. You retain data ownership. Creators earn equitable income.
+                                        Misinformation is reduced through content authentication. And real connections
+                                        are made without algorithmic manipulation.
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div x-data="{ openQuestion: null }" class="lg:max-w-2xl mx-auto">
+
+                                <div class="mb-2">
+                                    <div @click="openQuestion = !openQuestion"
+                                        class="flex flex-row  hover:cursor-pointer space-x-2 w-[55rem] lg:w-[35rem] p-3 bg-indigo-200 rounded-sm bg-opacity-10"
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        <div class="text-indigo-100 text-opacity-60 text-[2rem] lg:text-lg">
+                                            <p class="">
+                                                3.
+                                            </p>
+                                        </div>
+                                        <div class="text-indigo-100 text-opacity-60  text-[2rem] lg:text-lg">
+                                            <div
+                                                class="border border-l-[0.01rem] border-indigo-100 border-opacity-40  h-full ">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-[1.8rem] lg:text-lg">Why should I switch from the social apps
+                                            I already use?</span>
+                                        <button class="focus:outline-none">
+                                            <svg x-show="!openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            <svg x-show="openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div x-show="openQuestion"
+                                        class="p-4 bg-indigo-200 text-white bg-opacity-10 text-[1.8rem] lg:text-lg"
+                                        x-transition
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        On Digitalage you escape tracking, targeting and viral outrage while gaining
+                                        control over your personal data. Creators can earn more without pressure for
+                                        superficial engagement. And everyone benefits from a transparent platform
+                                        focused on user well-being over profits.
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div x-data="{ openQuestion: null }" class="lg:max-w-2xl mx-auto">
+
+                                <div class="mb-2">
+                                    <div @click="openQuestion = !openQuestion"
+                                        class="flex flex-row  hover:cursor-pointer space-x-2 w-[55rem] lg:w-[35rem] p-3 bg-indigo-200 rounded-sm bg-opacity-10"
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        <div class="text-indigo-100 text-opacity-60 text-[2rem] lg:text-lg">
+                                            <p class="">
+                                                4.
+                                            </p>
+                                        </div>
+                                        <div class="text-indigo-100 text-opacity-60  text-[2rem] lg:text-lg">
+                                            <div
+                                                class="border border-l-[0.01rem] border-indigo-100 border-opacity-40  h-full ">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-[1.8rem] lg:text-lg">How do you ensure creators get paid
+                                            fairly?</span>
+                                        <button class="focus:outline-none">
+                                            <svg x-show="!openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            <svg x-show="openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div x-show="openQuestion"
+                                        class="p-4 bg-indigo-200 text-white bg-opacity-10 text-[1.8rem] lg:text-lg"
+                                        x-transition
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        Digitalage utilizes blockchain-enabled smart contracts to facilitate transparent
+                                        subscriber payments, platform fee structures, and viewer-supported monetization
+                                        - with creators keeping up to 95% of earnings.
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div x-data="{ openQuestion: null }" class="lg:max-w-2xl mx-auto">
+
+                                <div class="mb-2">
+                                    <div @click="openQuestion = !openQuestion"
+                                        class="flex flex-row  hover:cursor-pointer space-x-2 w-[55rem] lg:w-[35rem] p-3 bg-indigo-200 rounded-sm bg-opacity-10"
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        <div class="text-indigo-100 text-opacity-60 text-[2rem] lg:text-lg">
+                                            <p class="">
+                                                5.
+                                            </p>
+                                        </div>
+                                        <div class="text-indigo-100 text-opacity-60  text-[2rem] lg:text-lg">
+                                            <div
+                                                class="border border-l-[0.01rem] border-indigo-100 border-opacity-40  h-full ">
+
+                                            </div>
+                                        </div>
+                                        <span class="text-[1.8rem] lg:text-lg">How does Digitalage manage privacy and
+                                            security?</span>
+                                        <button class="focus:outline-none">
+                                            <svg x-show="!openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            <svg x-show="openQuestion" xmlns="http://www.w3.org/2000/svg"
+                                                class="lg:h-6 lg:w-6 h-10 w-10 self-end" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M20 12H4" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div x-show="openQuestion"
+                                        class="p-4 bg-indigo-200 text-white bg-opacity-10 text-[1.8rem] lg:text-lg"
+                                        x-transition
+                                        style="transform: none; transform-origin: 50% 50% 0px; opacity: 1;">
+                                        Our decentralized infrastructure keeps data ownership in users' hands. Advanced
+                                        encryption secures personal data and communications. And strict access controls
+                                        prevent External tracking, limiting data collection to core platform
+                                        improvements.
+                                        Ready to learn more? Explore our platform and join Digitalage today!
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                </mdiv>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="bg-gradient-to-r from-white via-indigo-100 to-indigo-30 ">
+        <div id="section4" class="max-w-7xl mx-auto flex flex-col space-y-4 pb-[2rem]">
+
+
+            <dotlottie-player src="https://lottie.host/66ce825e-c906-451f-b370-737eea292ee7/og9JWm5n5M.json"
+                background="transparent" class="h-[38rem] w-[38rem] max-w-3xl mx-auto" speed="1" loop autoplay>
+            </dotlottie-player>
+
+            <div>
+                <div
+                    class="pt-0 font-extrabold font-plusJ items-center text-center flex flex-col justify-center  lg:w-full text-transparent text-[5rem] lg:text-[3rem] leading-[6rem] lg:leading-[5.5rem] bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-900">
+                    <p class="w-[85%] text-center">Join the Digitalage Community</p>
+
+                </div>
+                <div class="flex flex-row justify-center mt-2 lg:mt-1 text-center">
+                    <p class="font-sans w-[70%]  text-[2.5rem] lg:mt-[0.8rem] text-center lg:text-lg font-semibold">We
+                        invite creators,
+                        consumers, partners and investors to help us reinvent social media technology
+                        for good. Sign up today to receive updates and early access.</p>
+                </div>
+                <div class="flex flex-row justify-center mt-4">
+                    <div
+                        class="bg-indigo-800 mt-[2rem] lg:mt-[1rem] p-[6rem]  hover:bg-indigo-500 transition rounded-lg  transform ease-in-out duration-400 text-white mt-10 flex flex-row items-center space-x-4 text-[3rem] lg:text-lg justify-center w-[60%] lg:w-[20%] p-2 cursor-pointer text-center rounded border border-gray-200 bg-darkBgLight py-3 px-3 font-sans shadow outline-none ring-indigo-500 ">
+                        <p>Join Digitalage Now</p>
+
+                        <img src="images/join-1.png" class="animate-pulse lg:h-10 lg:w-10 h-14 w-14 text-white"></img>
+                    </div>
+
+                </div>
+                <div
+                    class="flex flex-col space-y-6 lg:space-y-2 mt-10 pb-[4rem] items-center justify-center  lg:w-full font-sans text-[1.9rem] lg:text-[1rem]">
+                    <div class="flex flex-row justify-center items-center w-[70%]">
+
+                        <dotlottie-player class="lg:h-10 lg:w-10 h-[9rem] w-[9rem]"
+                            src="https://lottie.host/098c842f-9239-4123-a0f5-5ba5a590c1b9/p8UHewPyvJ.json"
+                            background="transparent" speed="1" loop autoplay>
+                        </dotlottie-player>
+                        <p>Building an ethical platform with transparency and principles to restore trust in social
+                            systems.</p>
+                    </div>
+
+                    <div class="flex flex-row justify-center items-center w-[70%]">
+
+
+                        <dotlottie-player src="https://lottie.host/098c842f-9239-4123-a0f5-5ba5a590c1b9/p8UHewPyvJ.json"
+                            background="transparent" speed="1" class="lg:h-10 lg:w-10 h-[9rem] w-[9rem]" loop autoplay>
+                        </dotlottie-player>
+                        <p>Championing a future of strengthened online communities—join us in this movement.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-b from-[#343db9] via-[#0e157c] lg:flex lg:items-center to-[#010652]">
+            <div class="pt-[4rem] pb-[8rem] lg:pb-[3rem] lg:mt-0 mx-auto  lg:max-w-[78rem]">
+                <div class="flex flex-col space-y-[4rem]">
+                    <div class="grid grid-cols-1 gap-[3rem] lg:grid-cols-3 lg:gap-[0rem]">
+                        <div class="flex flex-col lg:w-[90%]   px-4 lg:px-0 space-y-3 items-center lg:items-start ">
+                            <div class="lg:self-start">
+                                <p
+                                    class="font-bold font-plusJ items-center  text-center text-transparent text-[4.8rem] lg:text-[2.2rem] leading-[5rem] lg:leading-[4.7rem] bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-500">
+                                    Contact Digitalage
+                                </p>
+                            </div>
+                            <div>
+                                <p
+                                    class="text-[2rem] pt-[2rem] lg:pt-4 lg:text-lg font-sans text-center lg:text-start text-indigo-200">
+                                    Thank you for your interest in learning more about Digitalage. Please get in touch
+                                    with any platform questions, partnership inquiries, investment opportunities, or
+                                    just to join our community!
+                                </p>
+                            </div>
+                            <div class="lg:self-start pt-[1rem] hidden lg:flex flex-col">
+                                <p class="text-[3rem] lg:text-lg font-sans font-bold text-white pb-4">
+                                    Follow us on
+                                </p>
+                                <div class="flex flex-row space-x-6 lg:space-x-4  ">
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/linkedin.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/twitter (1).png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/instagram.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/facebook.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div
+                            class="flex flex-col  lg:w-[90%]  mt-4 leading-[1.7rem]  px-4 lg:px-0 space-y-3 items-center lg:items-start ">
+                            <div class="lg:self-start text-center  lg:ml-[14rem] mt-[2rem] w-[20rem]">
+                                <p
+                                    class="text-[2rem] lg:text-[1.6rem] font-sans font-bold text-white leading-[2rem] lg:leading-[1.9rem] underline italic">
+                                    There are a few easy ways to reach us
+                                </p>
+                            </div>
+                            <div class="flex flex-col lg:flex-row space-x-4">
+                                <div class="pt-10 space-y-4">
+                                    <p
+                                        class="text-md font-sans text-center italic font-bold lg:text-start text-[2rem] lg:text-base text-indigo-200">
+                                        By Email
+                                    </p>
+                                    <p
+                                        class="text-md font-sans text-center pt-4 lg:pt-0 pb-4 lg:pb-0  lg:text-start text-indigo-200 text-[1.7rem] w-[30rem] leading-8 mt-2 lg:mt-0 lg:w-full lg:text-base">
+                                        For general inquiries, platform support, or to reach a specific department,
+                                        please
+                                        email us at
+                                    </p>
+                                    <a href="mailto:connect@digitalage.com" target="_blank"
+                                        class="w-[22rem] lg:w-[25rem]  mt-[10rem] lg:mt-0 group mx-auto lg:mx-0 flex flex-row space-x-4 rounded-md bg-darkBgLight p-4 shadow-inner shadow-indigo-600 border border-gray-500 hover:cursor-pointer flex flex-row justify-center lg:p-4">
+                                        <div
+                                            class="transition-transform duration-300 ease-in-out group-hover:scale-105">
+                                            <img src="icons/message.png" class="h-14 w-14 lg:h-18 lg:w-18 " />
+                                        </div>
+                                        <div class="flex flex-col items-center justify-center">
+                                            <p class="text-[1.4rem] lg:text-lg font-sans text-indigo-200">
+                                                connect@digitalage.com
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="pt-10 space-y-4">
+                                    <p
+                                        class="text-md text-[2rem] lg:text-base font-sans text-center italic font-bold lg:text-start text-indigo-200">
+                                        By Phone
+                                    </p>
+                                    <p
+                                        class="ext-md font-sans text-center pt-4 lg:pt-0 pb-4 lg:pb-0  lg:text-start text-indigo-200 text-[1.7rem] w-[30rem] leading-8 mt-2 lg:mt-0 lg:w-full lg:text-base">
+                                        For inquiries about Digitalage, call us during business hours at
+                                    </p>
+                                    <a href="https://api.whatsapp.com/send?phone=(800) 555-0199" target="_blank"
+                                        class="w-[22rem] lg:w-[25rem] mt-2 group mx-auto lg:mx-0 flex flex-row space-x-4 rounded-md bg-darkBgLight p-4 shadow-inner shadow-indigo-600 border border-gray-500 hover:cursor-pointer flex flex-row justify-center lg:p-4">
+                                        <div
+                                            class="transition-transform duration-300 ease-in-out group-hover:scale-105">
+                                            <img src="icons/phone-call.png" class="h-14 w-14 lg:h-18 lg:w-18 " />
+                                        </div>
+                                        <div class="flex flex-col items-center justify-center">
+                                            <p class="text-[1.4rem] lg:text-lg font-sans text-indigo-200">
+                                                (800) 555-0199
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div
+                        class="flex justify-center pt-4 lg:pt-0 text-center px-2 text-[1.6rem] px-10 lg:px-0 lg:text-lg text-indigo-100 ">
+                        We make every effort to respond to all inquiries within 48 hours! Please reach out by email for
+                        the quickest response.
+                        You can also explore our Help Center for self-service troubleshooting, our Press Kit for brand
+                        assets, and our latest Job Openings.
+                        We look forward to hearing from you soon and welcoming you into the Digitalage community!
+                    </div>
+                    <div class="lg:self-start pt-[1rem] lg:hidden flex flex-col items-center">
+                        <p class="text-[3rem] lg:text-lg font-sans font-bold text-white pb-4">
+                            Follow us on
+                        </p>
+                        <div class="flex flex-row space-x-6 lg:space-x-4  ">
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/linkedin.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/twitter (1).png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/instagram.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/facebook.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-center text-center px-2 text-[1.6rem] pb-[4rem] lg:pb-0 lg:text-lg text-indigo-200">
+                        © 2023 Digitalage. All Rights Reserved
+                    </div>
+                </div>
+            </div>
+            <pre>
+</pre>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section2');
+                    elements.forEach(element => observer.observe(element));
+                });
+
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer1 = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section3');
+                    elements.forEach(element => observer1.observe(element));
+                });
+
+
+                setTimeout(function () {
+                    document.getElementById('navBar2').style.display = 'block';
+                }, 1000);
+
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer2 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section4');
+                //     elements.forEach(element => observer2.observe(element));
+                // });
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer3 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section5');
+                //     elements.forEach(element => observer3.observe(element));
+                // });
+
+
+
+            </script>
+
+</body>
+
+</html>
