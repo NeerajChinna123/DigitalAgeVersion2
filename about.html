@@ -1,10 +1,23 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>Digitalage</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     <!--    <script src="https://cdn.tailwindcss.com"></script>-->
@@ -15,8 +28,58 @@
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.9/dist/htmx.min.js"
         integrity="sha256-lqM0qVcKOCz5xhofhtVYcLocZeFmzFvK6Y3djNq+uIY=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <style>
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fadeUpDiv {
+            /* Start with div hidden */
+            position: relative;
+            animation: fadeUp 1s ease-out forwards;
+            /* Maintain the state after the animation */
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up-animation {
+            opacity: 0;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        #slideRightDiv {
+            position: relative;
+            animation: slideRight 0.5s ease-out forwards;
+        }
+
         @keyframes slideInFromRight {
             0% {
                 transform: translateX(100%);
@@ -30,10 +93,68 @@
         .nav-slide-in {
             animation: 0.5s ease-out 0s 1 slideInFromRight;
         }
+
+        @keyframes slideOutToRight {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .nav-slide-out {
+            animation: 0.5s ease-out 0s 1 slideOutToRight;
+        }
+
+
+        .faq-item {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .question {
+            background-color: lightgray;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .answer {
+            background-color: white;
+            padding: 5px;
+            display: none;
+        }
+
+        .custom-underline-animation {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        .custom-underline-animation::after {
+            content: '';
+            position: absolute;
+            background-color: #60a5fa;
+            height: 2px;
+            opacity: 0;
+            transition: all 300ms ease-out;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+
+        }
+
+        .custom-underline-animation:hover::after {
+            opacity: 1;
+            left: 0;
+            right: 0;
+        }
     </style>
 </head>
 
 <body>
+
     <div class="bg-gradient-to-r from-white via-indigo-100 to-indigo-300 ">
         <div class="max-w-7xl mx-auto h-[6rem] ">
             <header x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50 h-20  ">
@@ -198,7 +319,7 @@
 
                 <div class="w-full  lg:w-1/2 p-8 space-y-4">
                     <!-- Tab Buttons -->
-                    <div class="flex space-x-2">
+                    <div class="flex space-x-2 justify-center">
                         <button @click="tab = 'vision'"
                             :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'vision', '': tab !== 'vision' }"
                             class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Vision</button>
@@ -319,6 +440,7 @@
 
 
         </div>
+        
 
         <div id="contactUs" class="bg-gradient-to-b from-[#343db9] via-[#0e157c] lg:flex lg:items-center to-[#010652]">
             <div class="pt-[4rem] pb-[8rem] lg:pb-[3rem] lg:mt-0 mx-auto  lg:max-w-[78rem]">
@@ -378,7 +500,7 @@
                                     There are a few easy ways to reach us
                                 </p>
                             </div>
-                            <div class="flex flex-col px-10 lg:flex-row space-x-4">
+                            <div class="flex flex-col lg:flex-row space-x-4">
                                 <div class="pt-10 space-y-4">
                                     <p
                                         class="text-md font-sans text-center italic font-bold lg:text-start text-[2rem] lg:text-base text-indigo-200">
@@ -472,17 +594,81 @@
                     </div>
                 </div>
             </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section2');
+                    elements.forEach(element => observer.observe(element));
+                });
+
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer1 = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section3');
+                    elements.forEach(element => observer1.observe(element));
+                });
+
+
+                setTimeout(function () {
+                    document.getElementById('navBar2').style.display = 'block';
+                }, 1000);
+
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer2 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section4');
+                //     elements.forEach(element => observer2.observe(element));
+                // });
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer3 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section5');
+                //     elements.forEach(element => observer3.observe(element));
+                // });
+
+                function scrollToDiv() {
+                    document.getElementById('contactUs').scrollIntoView({ behavior: 'smooth' });
+                }
+
+            </script>
 
 </body>
-<script>
-    setTimeout(function () {
-        document.getElementById('navBar2').style.display = 'block';
-    }, 1000);
-
-
-    function scrollToDiv() {
-        document.getElementById('contactUs').scrollIntoView({ behavior: 'smooth' });
-    }
-</script>
 
 </html>
