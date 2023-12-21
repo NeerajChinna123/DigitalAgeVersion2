@@ -183,7 +183,7 @@
                                 class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0  p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Product</a>
                         </div>
                         <div>
-                            <a href="#"
+                            <a href="features.html"
                                 class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0  p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Features</a>
                         </div>
                         <div>
@@ -192,7 +192,7 @@
                         </div>
                         <div>
                             <a href="about.html"
-                                class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0 p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Company</a>
+                                class="text-sm font-semibold leading-6 text-indigo-900 border border-indigo-900 rounded-md bg-white bg-opacity-0 p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Company</a>
                         </div>
                     </div>
 
@@ -240,7 +240,7 @@
                                     <div class="space-y-16 py-6">
                                         <a href="#"
                                             class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white ">Product</a>
-                                        <a href="#"
+                                        <a href="features.html"
                                             class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white ">Features</a>
                                         <a href="#"
                                             class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white">Marketplace</a>
@@ -268,9 +268,9 @@
         </header>
 
 
-        <div class="lg:h-screen max-w-7xl mx-auto">
+        <div class="h-screen max-w-7xl mx-auto">
             <div
-                class="pt-20 lg:pt-12 font-extrabold font-plusJ items-center text-center flex flex-row justify-center  lg:w-full text-transparent text-[3rem] lg:text-[4.2rem] leading-[6rem] lg:leading-[5.5rem] bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-900">
+                class="pt-20 lg:pt-12 font-extrabold font-plusJ items-center text-center flex flex-row justify-center  lg:w-full text-transparent text-[4rem] lg:text-[4.2rem] leading-[6rem] lg:leading-[5.5rem] bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-900">
                 <p class="w-[85%] text-center">About Us</p>
             </div>
 
@@ -319,29 +319,29 @@
 
                 <div class="w-full  lg:w-1/2 p-8 space-y-4">
                     <!-- Tab Buttons -->
-                    <div class="flex space-x-2 justify-center lg:justify-start">
+                    <div class="flex space-x-4 justify-center lg:justify-start">
                         <button @click="tab = 'vision'"
                             :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'vision', '': tab !== 'vision' }"
-                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Vision</button>
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-[2rem] lg:text-[1rem] text-center lg:text-start">Our Vision</button>
                         <button @click="tab = 'story'"
                             :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'story', '': tab !== 'story' }"
-                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Story</button>
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center text-[2rem] lg:text-[1rem] lg:text-start">Our Story</button>
                         <button @click="tab = 'values'"
                             :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'values', '': tab !== 'values' }"
-                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Values</button>
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center text-[2rem] lg:text-[1rem] lg:text-start">Our Values</button>
                         <button @click="tab = 'team'"
                             :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'team', '': tab !== 'team' }"
-                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Team</button>
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center text-[2rem] lg:text-[1rem] lg:text-start">Our Team</button>
                     </div>
 
 
-                    <div class="w-full flex justify-center lg:hidden">
+                    <div class="w-full flex justify-center lg:hidden pt-[4rem]">
 
                         <template x-if="tab === 'vision'">
     
                             <div>
                                 <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
-                                    class="w-[20rem] h-[20rem]"
+                                    class="w-[40rem] h-[40rem]"
                                     src="https://lottie.host/33bf2bfd-2279-423d-8b40-2113c82da89a/aFmcv3oqN8.json"
                                     background="transparent" speed="1" loop autoplay>
                                 </dotlottie-player>
@@ -352,7 +352,7 @@
                             <div>
     
                                 <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
-                                class="w-[26rem] h-[20rem]"
+                                class="w-[60rem] h-[35rem]"
                                     src="https://lottie.host/89909d6d-6eff-40fe-a0d8-4ad7d758398e/mVgs06Xa2o.json"
                                     background="transparent" speed="1" loop autoplay>
                                 </dotlottie-player>
@@ -362,13 +362,13 @@
     
     
                             <dotlottie-player src="https://lottie.host/35aaad8b-e122-403a-957f-17f78aaed4f6/WcXdVo3VJ1.json"
-                            class="w-[22rem] h-[22rem]" background="transparent" speed="1" loop autoplay>
+                            class="w-[60rem] h-[38rem]" background="transparent" speed="1" loop autoplay>
                             </dotlottie-player>
                         </template>
                         <template x-if="tab === 'team'">
     
     
-                            <dotlottie-player class="w-[20rem] h-[18rem]" src="https://lottie.host/81d1d0b0-7a06-47be-9923-ed9a0b1d7ff9/ZuK69R7ETe.json"
+                            <dotlottie-player class="w-[60rem] h-[38rem]" src="https://lottie.host/81d1d0b0-7a06-47be-9923-ed9a0b1d7ff9/ZuK69R7ETe.json"
                                 background="transparent" speed="1" class="w-[40rem] h-[28rem]" loop autoplay>
                             </dotlottie-player>
     
@@ -379,9 +379,9 @@
                     <!-- Tab Content with x-transition for fade-in effect -->
                     <div x-show="tab === 'vision'" x-transition:enter="transition-opacity ease-out duration-500"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
-                        <h2 class="text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start">Our Vision</h2>
+                        <h2 class="text-[5rem] lg:text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start pt-[8rem] lg:pt-0" >Our Vision</h2>
                         <p
-                            class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                            class=" mb-4 font-sans font-semibold text-[3rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
                             Digitalage envisions a social media landscape that empowers individuals, enriches lives, and
                             fosters authentic connections. One where creators prosper, communities thrive, and users
                             regain control over their digital experiences. We are building that future.
@@ -392,9 +392,9 @@
                     <div x-show="tab === 'story'" x-transition:enter="transition-opacity ease-out duration-500"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         style="display: none;">
-                        <h2 class="text-[3rem] font-bold mb-4  mt-4 lg:mt-10  text-center lg:text-start">Our Story</h2>
+                        <h2 class="text-[5rem] lg:text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start pt-[8rem] lg:pt-0">Our Story</h2>
                         <p
-                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                        class=" mb-4 font-sans font-semibold text-[3rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
                             Digitalage was founded in 2021 by tech entrepreneurs and social media pioneers dedicated to
                             positively disrupting the status quo. They witnessed first-hand the ways existing social
                             platforms exploit users and creators to drive engagement over wellbeing. Digitalage rises
@@ -407,9 +407,9 @@
                     <div x-show="tab === 'values'" x-transition:enter="transition-opacity ease-out duration-500"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         style="display: none;">
-                        <h2 class="text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start">Our Values</h2>
+                        <h2 class="text-[5rem] lg:text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start pt-[8rem] lg:pt-0">Our Values</h2>
                         <p
-                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                        class="mb-4 font-sans font-semibold text-[3rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
                             User Agency & Privacy: We believe user needs trump all else. Our platform operations empower
                             choice, control, and privacy.
                             Creator Livelihoods: We support creator success through fair compensation, IP protection and
@@ -425,9 +425,9 @@
                     <div x-show="tab === 'team'" x-transition:enter="transition-opacity ease-out duration-500"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         style="display: none;">
-                        <h2 class="text-[3rem] font-bold mb-4  mt-4 lg:mt-10  text-center lg:text-start">Our Team</h2>
+                        <h2 class="text-[5rem] lg:text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start pt-[8rem] lg:pt-0">Our Team</h2>
                         <p
-                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                        class="mb-4 font-sans font-semibold text-[3rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
                             Digitalage unites world-class technologists, designers, data scientists and platform experts
                             - all driven by our collective mission to positively transform social technology. Leadership
                             includes social media platform pioneers, AI specialists and digital media veterans.

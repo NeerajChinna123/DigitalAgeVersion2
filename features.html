@@ -1,37 +1,674 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Digitalage</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/site.webmanifest">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+    <meta name="msapplication-config" content="/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+    <!--    <script src="https://cdn.tailwindcss.com"></script>-->
+    <script src="scripts/tailwind3.3.5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"
+        integrity="sha256-yPqP9Fer3NIS83oH7y8pLJmQEd/6vKpXf7Hh4Adsplg=" crossorigin="anonymous" defer></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.9.9/dist/htmx.min.js"
+        integrity="sha256-lqM0qVcKOCz5xhofhtVYcLocZeFmzFvK6Y3djNq+uIY=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+    <style>
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #fadeUpDiv {
+            /* Start with div hidden */
+            position: relative;
+            animation: fadeUp 1s ease-out forwards;
+            /* Maintain the state after the animation */
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up-animation {
+            opacity: 0;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes slideRight {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        #slideRightDiv {
+            position: relative;
+            animation: slideRight 0.5s ease-out forwards;
+        }
+
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .nav-slide-in {
+            animation: 0.5s ease-out 0s 1 slideInFromRight;
+        }
+
+        @keyframes slideOutToRight {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .nav-slide-out {
+            animation: 0.5s ease-out 0s 1 slideOutToRight;
+        }
+
+
+        .faq-item {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        .question {
+            background-color: lightgray;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .answer {
+            background-color: white;
+            padding: 5px;
+            display: none;
+        }
+
+        .custom-underline-animation {
+            position: relative;
+            display: inline-block;
+
+        }
+
+        .custom-underline-animation::after {
+            content: '';
+            position: absolute;
+            background-color: #60a5fa;
+            height: 2px;
+            opacity: 0;
+            transition: all 300ms ease-out;
+            left: 50%;
+            right: 50%;
+            bottom: 0;
+
+        }
+
+        .custom-underline-animation:hover::after {
+            opacity: 1;
+            left: 0;
+            right: 0;
+        }
+    </style>
 </head>
+
 <body>
 
-<pre>
-    Unleash Your Potential on Digitalage
-At Digitalage, we built an empowering platform for creators by creators. One where you retain ownership, receive fair compensation, and make meaningful connections with fans. Leave limitations behind - and unlock transformative success on Digitalage.
-Creator Opportunities
-* Earn equitable revenue shares: Keep up to 95% of earnings from your content and subscriber base.
-* Expand reach exponentially: Leverage powerful platform tools to expand your audience globally.
-* Maintain full ownership: You retain all IP rights and creative control over your digital content and presence.
-* Access transparent analytics: Our intuitive dashboards and insights tools help inform your strategy.
-* Forge authentic connections: Engage fans, collaborators and other creators in a positive environment optimized for mutual growth.
-What Digitalage Offers You
-All-in-One Content Toolkit
-Our integrated creation tools - from editing to effects, publishing to analytics - help streamline your workflow.
-Subscription Services & Commerce
-Monetize content, offer exclusive access, and sell merchandise seamlessly. Memberships are frictionless for fans globally.
-Sustainable Career Building
-Thrive long-term with our accelerated Network Program for ambitious creators invested in digital content careers.
-Join the Community
-Ready to elevate your creator journey? Become part of Digitalage today. We can’t wait for you to experience social media on your own terms.
-Action Button: Start Creating
-</pre>
+    <div class="bg-gradient-to-r from-white via-indigo-100 to-indigo-300 ">
+        <div class="max-w-7xl mx-auto h-[6rem] ">
+            <header x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50 h-20  ">
+                <nav class="flex items-center justify-between px-8 py-[2rem] mt-10 lg:mt-6 lg:p-6 lg:px-8 max-w-7xl mx-auto h-14"
+                    aria-label="Global">
+                    <div class="flex lg:flex-1">
+                        <a href="index.html" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Digitalage</span>
+                            <img class="h-24 w-24 lg:h-12 lg:w-auto" src="logo/DAlogoLOCKUP_R_clear_light.png" alt="">
+                        </a>
+                    </div>
+                    <div class="flex lg:hidden">
+                        <button @click="isOpen = !isOpen" type="button"
+                            class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-400">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="h-16 w-16  lg:h-6 lg:w-6 text-black" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="hidden lg:flex lg:flex-1 lg:gap-x-12">
+                        <div>
+                            <a href="#"
+                                class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0  p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Product</a>
+                        </div>
+                        <div>
+                            <a href="#"
+                                class="text-sm font-semibold leading-6 text-indigo-900 border border-indigo-900 rounded-md bg-white bg-opacity-0  p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Features</a>
+                        </div>
+                        <div>
+                            <a href="#"
+                                class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0  p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Marketplace</a>
+                        </div>
+                        <div>
+                            <a href="about.html"
+                                class="text-sm font-semibold leading-6 text-indigo-900 hover:border hover:border-indigo-900 rounded-md bg-white bg-opacity-0 p-2 transition duration-200 ease-in-out rounded-lg hover:bg-opacity-10 hover:backdrop-blur-sm">Company</a>
+                        </div>
+                    </div>
 
-<img src="images/digital_illustration_diverse_creators_collaborating__73427cfe-0425-4982-bad2-9b864c4c9356.png" />
-<img src="images/animated_illustration_coins_and_cash_growing_from_di_6e1161af-86bf-47e9-910f-4321a26dd8f1.png" />
-<img src="images/illustration_creator_smiles_looking_at_data_visualiz_42f41e9f-a650-4c5b-b0e4-f7e8ff627060.png" />
-<img src="images/illustrated_decentralized_network_creators_connectin_3a37faa2-310c-4f0f-8b69-88619be65050.png" />
+                    <div class="flex hidden lg:flex flex-row space-x-2 lg:flex-1">
+                        <div class="hidden lg:flex lg:flex-1 ml-[11rem] lg:justify-end">
+                            <button onclick="scrollToDiv()"
+                                class="text-sm font-semibold leading-6 text-indigo-900 custom-underline-animation">Contact
+                                Us 👋
+                            </button>
+                        </div>
+                        <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                            <a href="#"
+                                class="text-sm font-semibold leading-6 text-indigo-900 custom-underline-animation">Log
+                                in
+                                <span aria-hidden="true">&rarr;</span></a>
+                        </div>
 
+                    </div>
+                </nav>
+
+
+                <!-- Mobile menu, show/hide based on menu open state. -->
+                <div id="navBar2" style="display: none;">
+                    <div :class="isOpen ? 'show' : 'hidden'" role="dialog" aria-modal="true">
+
+                        <div class="fixed inset-0 z-50"></div>
+                        <div :class="!isOpen && ' nav-slide-out '"
+                            class="fixed inset-y-0 right-0 z-50 w-[70%] overflow-y-auto bg-indigo-900 px-[4rem] py-[4rem]  sm:ring-1 sm:ring-white/10 nav-slide-in">
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="-m-1.5 p-1.5 ">
+                                    <span class="sr-only">Your Company</span>
+                                    <img class=" h-[5rem] w-[5rem]" src="icons/favicon.ico" alt="">
+                                </a>
+                                <button @click="isOpen = !isOpen" type="button"
+                                    class="-m-2.5 rounded-md p-2.5 text-gray-400">
+                                    <span class="sr-only">Close menu</span>
+                                    <svg class="h-[5rem] w-[5rem]" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                        stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="mt-14 flow-root">
+                                <div class="  ">
+                                    <div class="space-y-16 py-6">
+                                        <a href="#"
+                                            class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white ">Product</a>
+                                        <a href="#"
+                                            class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white ">Features</a>
+                                        <a href="#"
+                                            class="-mx-3 block rounded-lg px-3 py-2  font-semibold text-[3rem] leading-7 text-white">Marketplace</a>
+                                        <a href="about.html"
+                                            class="-mx-3 block rounded-lg px-3 py-2 font-semibold text-[3rem] leading-7 text-white">Company</a>
+                                    </div>
+
+                                    <div class="py-6" onclick="scrollToDiv()">
+                                        <button href="#contactUs"
+                                            class="-mx-3 block rounded-lg px-3 py-2.5 font-semibold text-[3rem] leading-7 text-white hover:bg-gray-800">Contact
+                                            Us</button>
+                                    </div>
+                                    <div class="py-6">
+                                        <a href="#"
+                                            class="-mx-3 block rounded-lg px-3 py-2.5 font-semibold text-[3rem] leading-7 text-white hover:bg-gray-800">Log
+                                            in</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+        </header>
+
+
+        <div class="h-screen max-w-7xl mx-auto">
+            <div
+                class="pt-20 lg:pt-12 font-extrabold font-plusJ items-center text-center flex flex-row justify-center  lg:w-full text-transparent text-[3rem] lg:text-[4.2rem] leading-[6rem] lg:leading-[5.5rem] bg-clip-text bg-gradient-to-r from-violet-500 to-indigo-900">
+                <p class="w-[85%] text-center">Unleash Your Potential on Digitalage</p>
+            </div>
+
+            <div x-data="{ tab: 'vision' }" class="flex  flex-wrap mt-[3rem] items-center">
+
+                <div class="w-full md:w-1/2 hidden lg:flex">
+
+                    <template x-if="tab === 'vision'">
+
+                        <div>
+                            <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
+                                class="w-[28rem] h-[28rem]"
+                                src="https://lottie.host/33bf2bfd-2279-423d-8b40-2113c82da89a/aFmcv3oqN8.json"
+                                background="transparent" speed="1" loop autoplay>
+                            </dotlottie-player>
+                        </div>
+
+                    </template>
+                    <template x-if="tab === 'story'">
+                        <div>
+
+                            <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
+                                class="w-[40rem] h-[28rem]"
+                                src="https://lottie.host/89909d6d-6eff-40fe-a0d8-4ad7d758398e/mVgs06Xa2o.json"
+                                background="transparent" speed="1" loop autoplay>
+                            </dotlottie-player>
+                        </div>
+                    </template>
+                    <template x-if="tab === 'values'">
+
+
+                        <dotlottie-player src="https://lottie.host/35aaad8b-e122-403a-957f-17f78aaed4f6/WcXdVo3VJ1.json"
+                            class="w-[40rem] h-[28rem]" background="transparent" speed="1" loop autoplay>
+                        </dotlottie-player>
+                    </template>
+                    <template x-if="tab === 'team'">
+
+
+                        <dotlottie-player src="https://lottie.host/81d1d0b0-7a06-47be-9923-ed9a0b1d7ff9/ZuK69R7ETe.json"
+                            background="transparent" speed="1" class="w-[40rem] h-[28rem]" loop autoplay>
+                        </dotlottie-player>
+
+
+                    </template>
+                </div>
+
+                <div class="w-full  lg:w-1/2 p-8 space-y-4">
+                    <!-- Tab Buttons -->
+                    <div class="flex space-x-2 justify-center lg:justify-start">
+                        <button @click="tab = 'vision'"
+                            :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'vision', '': tab !== 'vision' }"
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Vision</button>
+                        <button @click="tab = 'story'"
+                            :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'story', '': tab !== 'story' }"
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Story</button>
+                        <button @click="tab = 'values'"
+                            :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'values', '': tab !== 'values' }"
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Values</button>
+                        <button @click="tab = 'team'"
+                            :class="{ 'bg-gradient-to-r from-violet-500 to-indigo-900 text-white': tab === 'team', '': tab !== 'team' }"
+                            class="text-indigo-900 rounded px-4 py-2 border border-indigo-900 text-center lg:text-start">Our Team</button>
+                    </div>
+
+
+                    <div class="w-full flex justify-center lg:hidden">
+
+                        <template x-if="tab === 'vision'">
+    
+                            <div>
+                                <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
+                                    class="w-[20rem] h-[20rem]"
+                                    src="https://lottie.host/33bf2bfd-2279-423d-8b40-2113c82da89a/aFmcv3oqN8.json"
+                                    background="transparent" speed="1" loop autoplay>
+                                </dotlottie-player>
+                            </div>
+    
+                        </template>
+                        <template x-if="tab === 'story'">
+                            <div>
+    
+                                <dotlottie-player x-transition:enter="transition-opacity ease-out duration-300"
+                                class="w-[26rem] h-[20rem]"
+                                    src="https://lottie.host/89909d6d-6eff-40fe-a0d8-4ad7d758398e/mVgs06Xa2o.json"
+                                    background="transparent" speed="1" loop autoplay>
+                                </dotlottie-player>
+                            </div>
+                        </template>
+                        <template x-if="tab === 'values'">
+    
+    
+                            <dotlottie-player src="https://lottie.host/35aaad8b-e122-403a-957f-17f78aaed4f6/WcXdVo3VJ1.json"
+                            class="w-[22rem] h-[22rem]" background="transparent" speed="1" loop autoplay>
+                            </dotlottie-player>
+                        </template>
+                        <template x-if="tab === 'team'">
+    
+    
+                            <dotlottie-player class="w-[20rem] h-[18rem]" src="https://lottie.host/81d1d0b0-7a06-47be-9923-ed9a0b1d7ff9/ZuK69R7ETe.json"
+                                background="transparent" speed="1" class="w-[40rem] h-[28rem]" loop autoplay>
+                            </dotlottie-player>
+    
+    
+                        </template>
+                    </div>
+
+                    <!-- Tab Content with x-transition for fade-in effect -->
+                    <div x-show="tab === 'vision'" x-transition:enter="transition-opacity ease-out duration-500"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                        <h2 class="text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start">Our Vision</h2>
+                        <p
+                            class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                            Digitalage envisions a social media landscape that empowers individuals, enriches lives, and
+                            fosters authentic connections. One where creators prosper, communities thrive, and users
+                            regain control over their digital experiences. We are building that future.
+                        </p>
+
+                    </div>
+
+                    <div x-show="tab === 'story'" x-transition:enter="transition-opacity ease-out duration-500"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        style="display: none;">
+                        <h2 class="text-[3rem] font-bold mb-4  mt-4 lg:mt-10  text-center lg:text-start">Our Story</h2>
+                        <p
+                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                            Digitalage was founded in 2021 by tech entrepreneurs and social media pioneers dedicated to
+                            positively disrupting the status quo. They witnessed first-hand the ways existing social
+                            platforms exploit users and creators to drive engagement over wellbeing. Digitalage rises
+                            from those learnings - and functions on an ethical foundation of transparency, equity and
+                            trust.
+                        </p>
+
+                    </div>
+
+                    <div x-show="tab === 'values'" x-transition:enter="transition-opacity ease-out duration-500"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        style="display: none;">
+                        <h2 class="text-[3rem] font-bold mb-4 mt-4 lg:mt-10 text-center lg:text-start">Our Values</h2>
+                        <p
+                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                            User Agency & Privacy: We believe user needs trump all else. Our platform operations empower
+                            choice, control, and privacy.
+                            Creator Livelihoods: We support creator success through fair compensation, IP protection and
+                            sustainable career paths.
+                            Content Integrity: We leverage advanced analytics to promote accurate information and reduce
+                            harmful misinformation.
+                            Community Development: We nurture inclusive environments optimized for meaningful connection
+                            without manipulation.
+                        </p>
+
+                    </div>
+
+                    <div x-show="tab === 'team'" x-transition:enter="transition-opacity ease-out duration-500"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        style="display: none;">
+                        <h2 class="text-[3rem] font-bold mb-4  mt-4 lg:mt-10  text-center lg:text-start">Our Team</h2>
+                        <p
+                        class=" mb-4 font-sans font-semibold text-[1rem] lg:text-[1rem] text-center lg:text-start tlg:text-start text-indigo-900">
+                            Digitalage unites world-class technologists, designers, data scientists and platform experts
+                            - all driven by our collective mission to positively transform social technology. Leadership
+                            includes social media platform pioneers, AI specialists and digital media veterans.
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        
+
+        <div id="contactUs" class="bg-gradient-to-b from-[#343db9] via-[#0e157c] lg:flex lg:items-center to-[#010652]">
+            <div class="pt-[4rem] pb-[8rem] lg:pb-[3rem] lg:mt-0 mx-auto  lg:max-w-[78rem]">
+                <div class="flex flex-col space-y-[4rem]">
+                    <div class="grid grid-cols-1 gap-[3rem] lg:grid-cols-3 lg:gap-[0rem]">
+                        <div class="flex flex-col lg:w-[90%]   px-4 lg:px-0 space-y-3 items-center lg:items-start ">
+                            <div class="lg:self-start">
+                                <p
+                                    class="font-bold font-plusJ items-center  text-center text-transparent text-[4.8rem] lg:text-[2.2rem] leading-[5rem] lg:leading-[4.7rem] bg-clip-text bg-gradient-to-r from-white via-indigo-100 to-indigo-500">
+                                    Contact Digitalage
+                                </p>
+                            </div>
+                            <div>
+                                <p
+                                    class="text-[2rem] pt-[2rem] lg:pt-4 lg:text-lg font-sans text-center lg:text-start text-indigo-200">
+                                    Thank you for your interest in learning more about Digitalage. Please get in touch
+                                    with any platform questions, partnership inquiries, investment opportunities, or
+                                    just to join our community!
+                                </p>
+                            </div>
+                            <div class="lg:self-start pt-[1rem] hidden lg:flex flex-col">
+                                <p class="text-[3rem] lg:text-lg font-sans font-bold text-white pb-4">
+                                    Follow us on
+                                </p>
+                                <div class="flex flex-row space-x-6 lg:space-x-4  ">
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/linkedin.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/twitter (1).png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/instagram.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                    <div class="p-2 bg-white rounded-md cursor-pointer">
+                                        <img src="icons/facebook.png"
+                                            class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                        </img>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div
+                            class="flex flex-col  lg:w-[90%]  mt-4 leading-[1.7rem]  px-4 lg:px-0 space-y-3 items-center lg:items-start ">
+                            <div class="lg:self-start text-center  lg:ml-[14rem] mt-[2rem] w-[20rem]">
+                                <p
+                                    class="text-[2rem] lg:text-[1.6rem] font-sans font-bold text-white leading-[2rem] lg:leading-[1.9rem] underline italic">
+                                    There are a few easy ways to reach us
+                                </p>
+                            </div>
+                            <div class="flex flex-col lg:flex-row space-x-4">
+                                <div class="pt-10 space-y-4">
+                                    <p
+                                        class="text-md font-sans text-center italic font-bold lg:text-start text-[2rem] lg:text-base text-indigo-200">
+                                        By Email
+                                    </p>
+                                    <p
+                                        class="text-md font-sans text-center pt-4 lg:pt-0 pb-4 lg:pb-0  lg:text-start text-indigo-200 text-[1.7rem] w-[30rem] leading-8 mt-2 lg:mt-0 lg:w-full lg:text-base">
+                                        For general inquiries, platform support, or to reach a specific department,
+                                        please
+                                        email us at
+                                    </p>
+                                    <a href="mailto:connect@digitalage.com" target="_blank"
+                                        class="w-[22rem] lg:w-[25rem]  mt-[10rem] lg:mt-0 group mx-auto lg:mx-0 flex flex-row space-x-4 rounded-md bg-darkBgLight p-4 shadow-inner shadow-indigo-600 border border-gray-500 hover:cursor-pointer flex flex-row justify-center lg:p-4">
+                                        <div
+                                            class="transition-transform duration-300 ease-in-out group-hover:scale-105">
+                                            <img src="icons/message.png" class="h-14 w-14 lg:h-18 lg:w-18 " />
+                                        </div>
+                                        <div class="flex flex-col items-center justify-center">
+                                            <p class="text-[1.4rem] lg:text-lg font-sans text-indigo-200">
+                                                connect@digitalage.com
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="pt-10 space-y-4">
+                                    <p
+                                        class="text-md text-[2rem] lg:text-base font-sans text-center italic font-bold lg:text-start text-indigo-200">
+                                        By Phone
+                                    </p>
+                                    <p
+                                        class="ext-md font-sans text-center pt-4 lg:pt-0 pb-4 lg:pb-0  lg:text-start text-indigo-200 text-[1.7rem] w-[30rem] leading-8 mt-2 lg:mt-0 lg:w-full lg:text-base">
+                                        For inquiries about Digitalage, call us during business hours at
+                                    </p>
+                                    <a href="https://api.whatsapp.com/send?phone=(800) 555-0199" target="_blank"
+                                        class="w-[22rem] lg:w-[25rem] mt-2 group mx-auto lg:mx-0 flex flex-row space-x-4 rounded-md bg-darkBgLight p-4 shadow-inner shadow-indigo-600 border border-gray-500 hover:cursor-pointer flex flex-row justify-center lg:p-4">
+                                        <div
+                                            class="transition-transform duration-300 ease-in-out group-hover:scale-105">
+                                            <img src="icons/phone-call.png" class="h-14 w-14 lg:h-18 lg:w-18 " />
+                                        </div>
+                                        <div class="flex flex-col items-center justify-center">
+                                            <p class="text-[1.4rem] lg:text-lg font-sans text-indigo-200">
+                                                (800) 555-0199
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div
+                        class="flex justify-center pt-4 lg:pt-0 text-center px-10 text-[1.6rem] lg:px-0 lg:text-lg text-indigo-100 ">
+                        We make every effort to respond to all inquiries within 48 hours! Please reach out by email for
+                        the quickest response.
+                        You can also explore our Help Center for self-service troubleshooting, our Press Kit for brand
+                        assets, and our latest Job Openings.
+                        We look forward to hearing from you soon and welcoming you into the Digitalage community!
+                    </div>
+                    <div class="lg:self-start pt-[1rem] lg:hidden flex flex-col items-center">
+                        <p class="text-[3rem] lg:text-lg font-sans font-bold text-white pb-4">
+                            Follow us on
+                        </p>
+                        <div class="flex flex-row space-x-6 lg:space-x-4  ">
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/linkedin.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/twitter (1).png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/instagram.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                            <div class="p-2 bg-white rounded-md cursor-pointer">
+                                <img src="icons/facebook.png"
+                                    class="h-10 w-10 lg:h-6 lg:w-6 transform transition duration-500 hover:scale-125 animate-spin">
+                                </img>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-center text-center px-2 text-[1.6rem] pb-[4rem] lg:pb-0 lg:text-lg text-indigo-200">
+                        © 2023 Digitalage. All Rights Reserved
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section2');
+                    elements.forEach(element => observer.observe(element));
+                });
+
+
+                document.addEventListener("DOMContentLoaded", () => {
+                    const observer1 = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('fade-up-animation');
+                            }
+                        });
+                    }, {
+                        threshold: 0.5
+                    });
+
+                    const elements = document.querySelectorAll('#section3');
+                    elements.forEach(element => observer1.observe(element));
+                });
+
+
+                setTimeout(function () {
+                    document.getElementById('navBar2').style.display = 'block';
+                }, 1000);
+
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer2 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section4');
+                //     elements.forEach(element => observer2.observe(element));
+                // });
+
+                // document.addEventListener("DOMContentLoaded", () => {
+                //     const observer3 = new IntersectionObserver((entries) => {
+                //         entries.forEach(entry => {
+                //             if (entry.isIntersecting) {
+                //                 entry.target.classList.add('fade-up-animation');
+                //             }
+                //         });
+                //     }, {
+                //         threshold: 0.5 
+                //     });
+
+                //     const elements = document.querySelectorAll('#section5');
+                //     elements.forEach(element => observer3.observe(element));
+                // });
+
+                function scrollToDiv() {
+                    document.getElementById('contactUs').scrollIntoView({ behavior: 'smooth' });
+                }
+
+            </script>
 
 </body>
+
 </html>
